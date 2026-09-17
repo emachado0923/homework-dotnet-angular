@@ -32,7 +32,7 @@
         Status
         <select formControlName="status">
           @for (option of statuses; track option.value) {
-            <option [value]="option.value">{{ option.label }}</option>
+            <option [ngValue]="option.value">{{ option.label }}</option>
           }
         </select>
       </label>
