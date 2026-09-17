@@ -1,0 +1,48 @@
+<div class="modal-backdrop" (click)="cancel()">
+  <form class="modal-card" [formGroup]="form" (ngSubmit)="submit()" (click)="$event.stopPropagation()">
+    <h2>{{ isEditMode ? 'Edit task' : 'New task' }}</h2>
+
+    @if (errorMessage(); as message) {
+      <div class="alert-error">{{ message }}</div>
+    }
+
+    <label>
+      Title
+      <input type="text" formControlName="title" placeholder="Task title" />
+      @if (form.controls.title.invalid && form.controls.title.touched) {
+        <span class="field-error">Title is required.</span>
+      }
+    </label>
+
+    <label>
+      Description
+      <textarea formControlName="description" rows="3" placeholder="Details"></textarea>
+    </label>
+
+    <label>
+      Due date
+      <input type="date" formControlName="dueDate" />
+      @if (form.controls.dueDate.invalid && form.controls.dueDate.touched) {
+        <span class="field-error">Due date is required.</span>
+      }
+    </label>
+
+    @if (isEditMode) {
+      <label>
+        Status
+        <select formControlName="status">
+          @for (option of statuses; track option.value) {
+            <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </label>
+    }
+
+    <div class="actions">
+      <button type="button" class="secondary" (click)="cancel()">Cancel</button>
+      <button type="submit" [disabled]="isSubmitting()">
+        {{ isSubmitting() ? 'Saving...' : 'Save' }}
+      </button>
+    </div>
+  </form>
+</div>

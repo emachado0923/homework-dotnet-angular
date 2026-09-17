@@ -1,0 +1,45 @@
+<div class="task-page">
+  <div class="toolbar">
+    <div class="tabs">
+      <button [class.active]="filter() === 'All'" (click)="setFilter('All')">All</button>
+      <button [class.active]="filter() === 'Pending'" (click)="setFilter('Pending')">Pending</button>
+      <button [class.active]="filter() === 'InProgress'" (click)="setFilter('InProgress')">In Progress</button>
+      <button [class.active]="filter() === 'Completed'" (click)="setFilter('Completed')">Completed</button>
+    </div>
+    <button class="new-task" (click)="openCreateForm()">+ New Task</button>
+  </div>
+
+  @if (filteredTasks().length === 0) {
+    <p class="empty-state">No tasks here yet.</p>
+  } @else {
+    <ul class="task-list">
+      @for (task of filteredTasks(); track task.id) {
+        <li class="task-card" [class.overdue]="task.isOverdue">
+          <div class="task-main">
+            <h3>{{ task.title }}</h3>
+            <p class="description">{{ task.description }}</p>
+            <div class="meta">
+              <span class="status" [attr.data-status]="statusLabel(task.status)">
+                {{ statusLabel(task.status) }}
+              </span>
+              <span class="due-date" [class.overdue-text]="task.isOverdue">
+                Due {{ task.dueDate | date: 'mediumDate' }}
+                @if (task.isOverdue) {
+                  <strong> (Overdue)</strong>
+                }
+              </span>
+            </div>
+          </div>
+          <div class="task-actions">
+            <button (click)="openEditForm(task)">Edit</button>
+            <button class="danger" (click)="deleteTask(task)">Delete</button>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+
+  @if (isFormOpen()) {
+    <app-task-form [task]="editingTask()" (closed)="closeForm()" (saved)="onSaved()" />
+  }
+</div>

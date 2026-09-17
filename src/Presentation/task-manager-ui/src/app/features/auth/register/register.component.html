@@ -1,0 +1,44 @@
+<div class="auth-page">
+  <form class="auth-card" [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Create account</h1>
+    <p class="subtitle">Start tracking your tasks</p>
+
+    @if (errorMessage(); as message) {
+      <div class="alert-error">{{ message }}</div>
+    }
+
+    <label>
+      Full name
+      <input type="text" formControlName="fullName" placeholder="Jane Doe" />
+      @if (form.controls.fullName.invalid && form.controls.fullName.touched) {
+        <span class="field-error">Full name is required.</span>
+      }
+    </label>
+
+    <label>
+      Email
+      <input type="email" formControlName="email" placeholder="jane&#64;example.com" />
+      @if (form.controls.email.invalid && form.controls.email.touched) {
+        <span class="field-error">A valid email is required.</span>
+      }
+    </label>
+
+    <label>
+      Password
+      <input type="password" formControlName="password" placeholder="Password" />
+      @if (form.controls.password.invalid && form.controls.password.touched) {
+        <span class="field-error">
+          Min 8 characters, with uppercase, lowercase and a digit.
+        </span>
+      }
+    </label>
+
+    <button type="submit" [disabled]="isSubmitting()">
+      {{ isSubmitting() ? 'Creating account...' : 'Create account' }}
+    </button>
+
+    <p class="switch-link">
+      Already have an account? <a routerLink="/login">Sign in</a>
+    </p>
+  </form>
+</div>

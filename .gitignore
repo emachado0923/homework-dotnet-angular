@@ -1,0 +1,25 @@
+# .NET
+bin/
+obj/
+*.user
+*.db
+*.db-shm
+*.db-wal
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.suo
+
+# Angular / Node
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude Code local settings
+.claude/settings.local.json

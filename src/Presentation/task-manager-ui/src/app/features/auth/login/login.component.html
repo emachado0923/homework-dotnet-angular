@@ -1,0 +1,36 @@
+<div class="auth-page">
+  <form class="auth-card" [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Sign in</h1>
+    <p class="subtitle">Use your Task Manager account</p>
+
+    @if (errorMessage(); as message) {
+      <div class="alert alert-error">{{ message }}</div>
+    }
+
+    <label>
+      Email
+      <input type="email" formControlName="email" placeholder="admin&#64;taskmanager.com" />
+      @if (form.controls.email.invalid && form.controls.email.touched) {
+        <span class="field-error">A valid email is required.</span>
+      }
+    </label>
+
+    <label>
+      Password
+      <input type="password" formControlName="password" placeholder="Password" />
+      @if (form.controls.password.invalid && form.controls.password.touched) {
+        <span class="field-error">Password is required.</span>
+      }
+    </label>
+
+    <button type="submit" [disabled]="isSubmitting()">
+      {{ isSubmitting() ? 'Signing in...' : 'Sign in' }}
+    </button>
+
+    <p class="switch-link">
+      Don't have an account? <a routerLink="/register">Register</a>
+    </p>
+
+    <p class="demo-hint">Demo: admin&#64;taskmanager.com / Admin123!</p>
+  </form>
+</div>

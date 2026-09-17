@@ -1,0 +1,162 @@
+.task-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+
+  button {
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    color: #475569;
+    font-size: 0.85rem;
+    cursor: pointer;
+
+    &.active {
+      background: #4f46e5;
+      border-color: #4f46e5;
+      color: #fff;
+    }
+  }
+}
+
+.new-task {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #16a34a;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background: #15803d;
+  }
+}
+
+.empty-state {
+  text-align: center;
+  color: #94a3b8;
+  margin-top: 3rem;
+}
+
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.task-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+
+  &.overdue {
+    border-color: #fecaca;
+    background: #fff5f5;
+  }
+}
+
+.task-main {
+  min-width: 0;
+
+  h3 {
+    margin: 0 0 0.25rem;
+    color: #1e293b;
+    font-size: 1rem;
+  }
+}
+
+.description {
+  margin: 0 0 0.5rem;
+  color: #64748b;
+  font-size: 0.85rem;
+  word-break: break-word;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+}
+
+.status {
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: #e0e7ff;
+  color: #4338ca;
+  font-weight: 600;
+
+  &[data-status='Completed'] {
+    background: #dcfce7;
+    color: #15803d;
+  }
+
+  &[data-status='InProgress'] {
+    background: #fef3c7;
+    color: #b45309;
+  }
+}
+
+.due-date {
+  color: #64748b;
+}
+
+.overdue-text {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+
+  button {
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    color: #334155;
+    font-size: 0.8rem;
+    cursor: pointer;
+
+    &:hover {
+      background: #f1f5f9;
+    }
+
+    &.danger {
+      border-color: #fecaca;
+      color: #dc2626;
+
+      &:hover {
+        background: #fef2f2;
+      }
+    }
+  }
+}
