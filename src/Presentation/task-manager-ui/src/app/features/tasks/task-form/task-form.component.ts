@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TaskService } from '../../../core/services/task.service';
 import { TaskDto, TaskItemStatus } from '../../../core/models/task.model';
+import { extractErrorMessage } from '../../../core/utils/http-error.util';
 
 @Component({
   selector: 'app-task-form',
@@ -82,7 +83,7 @@ export class TaskFormComponent {
       },
       error: (err: HttpErrorResponse) => {
         this.isSubmitting.set(false);
-        this.errorMessage.set(err.error?.message ?? 'Could not save the task.');
+        this.errorMessage.set(extractErrorMessage(err, 'Could not save the task.'));
       }
     });
   }

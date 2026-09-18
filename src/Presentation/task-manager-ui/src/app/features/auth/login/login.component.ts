@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../../core/services/auth.service';
+import { extractErrorMessage } from '../../../core/utils/http-error.util';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +38,7 @@ export class LoginComponent {
       next: () => this.router.navigate(['/tasks']),
       error: (err: HttpErrorResponse) => {
         this.isSubmitting.set(false);
-        this.errorMessage.set(err.error?.message ?? 'Invalid email or password.');
+        this.errorMessage.set(extractErrorMessage(err, 'Invalid email or password.'));
       }
     });
   }
